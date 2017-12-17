@@ -12,6 +12,7 @@ class AddPallet extends React.Component {
     this.qtyChange = this.qtyChange.bind(this);
     this.nameChange = this.nameChange.bind(this);
     this.partChange = this.partChange.bind(this);
+    this.createPallet = this.createPallet.bind(this);
   }
 
   qtyChange(event) {
@@ -58,7 +59,7 @@ class AddPallet extends React.Component {
         </label>
         <label htmlFor="pallet-part">
           Part Name:
-          <input id="part-name" value={this.state.partName} onChange={this.partChange} />
+          <input id="pallet-part" value={this.state.partId} onChange={this.partChange} />
         </label>
         <button onClick={this.createPallet}>Create Pallet</button>
       </div>

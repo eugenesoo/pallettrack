@@ -19047,6 +19047,7 @@ var AddPallet = function (_React$Component) {
     _this.qtyChange = _this.qtyChange.bind(_this);
     _this.nameChange = _this.nameChange.bind(_this);
     _this.partChange = _this.partChange.bind(_this);
+    _this.createPallet = _this.createPallet.bind(_this);
     return _this;
   }
 
@@ -19107,7 +19108,7 @@ var AddPallet = function (_React$Component) {
           'label',
           { htmlFor: 'pallet-part' },
           'Part Name:',
-          _react2.default.createElement('input', { id: 'part-name', value: this.state.partName, onChange: this.partChange })
+          _react2.default.createElement('input', { id: 'pallet-part', value: this.state.partId, onChange: this.partChange })
         ),
         _react2.default.createElement(
           'button',
