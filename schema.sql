@@ -15,7 +15,14 @@ CREATE TABLE parts (
 );
 
 CREATE TABLE processorder (
-  processid foreign key reference,
-  partid foreign key reference,
-  order
+  processid INTEGER REFERENCES processes (processid),
+  partid INTEGER REFERENCES parts(partid),
+  orderid INTEGER NOT NULL 
+);
+
+CREATE TABLE pallets (
+  palletid SERIAL PRIMARY KEY,
+  qty INTEGER NOT NULL,
+  partid INTEGER REFERENCES parts(partid),
+  orderid REFERENCES processorder(orderid)
 );
