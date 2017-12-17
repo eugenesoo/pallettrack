@@ -4,11 +4,19 @@
   "main": "index.js",
   "author": "Eugene Soo <20952179+eugenesoo@users.noreply.github.com>",
   "license": "MIT",
+  "scripts": {
+    "start": "nodemon server"
+  },
   "devDependencies": {
     "eslint": "^4.13.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
-    "eslint-plugin-react": "^7.5.1"
+    "eslint-plugin-react": "^7.5.1",
+    "nodemon": "^1.13.3",
+    "webpack": "^3.10.0"
+  },
+  "dependencies": {
+    "express": "^4.16.2",
   }
 }
