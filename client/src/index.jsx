@@ -1,10 +1,7 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
+/* eslint-env browser */
 
-const App = () => (
-  <div>
-    Hello World!
-  </div>
-);
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './components/App';
 
 ReactDOM.render(<App />, document.getElementById('app'));

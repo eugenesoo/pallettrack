@@ -21,7 +21,7 @@ CREATE TABLE processorder (
 );
 
 CREATE TABLE pallets (
-  palletid SERIAL PRIMARY KEY,
+  palletid VARCHAR(40) PRIMARY KEY,
   qty INTEGER NOT NULL,
   partid INTEGER REFERENCES parts(partid),
   orderid REFERENCES processorder(orderid)
