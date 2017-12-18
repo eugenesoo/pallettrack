@@ -1,3 +1,5 @@
+\connect postgres;
+
 DROP DATABASE IF EXISTS pallettrack;
 
 CREATE DATABASE pallettrack;
@@ -26,3 +28,7 @@ CREATE TABLE pallets (
   partid INTEGER REFERENCES parts(partid),
   orderid INTEGER NOT NULL
 );
+
+INSERT INTO processes (processname) VALUES ('Milling'), ('Chamfering'), ('Tapping'), ('Tumbling (Ceramic)'), ('Brushing'), ('OD Ring Gauge');
+
+INSERT INTO parts (partname) VALUES ('Main Shaft 7-0412R5250P');

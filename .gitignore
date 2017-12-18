@@ -57,3 +57,4 @@ typings/
 # dotenv environment variables file
 .env
 *.swp
+./client/dist/bundle.js

@@ -19025,6 +19025,8 @@ var _axios2 = _interopRequireDefault(_axios);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -19042,35 +19044,35 @@ var AddPallet = function (_React$Component) {
     _this.state = {
       palletQty: '',
       palletName: '',
-      partId: ''
+      partId: 1,
+      parts: []
     };
-    _this.qtyChange = _this.qtyChange.bind(_this);
-    _this.nameChange = _this.nameChange.bind(_this);
-    _this.partChange = _this.partChange.bind(_this);
+    _this.inputChange = _this.inputChange.bind(_this);
     _this.createPallet = _this.createPallet.bind(_this);
+    _this.getParts = _this.getParts.bind(_this);
     return _this;
   }
 
   _createClass(AddPallet, [{
-    key: 'qtyChange',
-    value: function qtyChange(event) {
-      this.setState({
-        palletQty: event.target.value
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      this.getParts().then(function (data) {
+        _this2.setState({
+          parts: data.data
+        });
       });
     }
   }, {
-    key: 'nameChange',
-    value: function nameChange(event) {
-      this.setState({
-        palletName: event.target.value
-      });
+    key: 'getParts',
+    value: function getParts() {
+      return _axios2.default.get('/parts');
     }
   }, {
-    key: 'partChange',
-    value: function partChange(event) {
-      this.setState({
-        partId: event.target.value
-      });
+    key: 'inputChange',
+    value: function inputChange(event, field) {
+      this.setState(_defineProperty({}, field, event.target.value));
     }
   }, {
     key: 'createPallet',
@@ -19078,12 +19080,14 @@ var AddPallet = function (_React$Component) {
       _axios2.default.post('/pallet', {
         palletname: this.state.palletName,
         palletqty: this.state.palletQty,
-        partid: this.state.partId
+        palletpart: this.state.partId
       });
     }
   }, {
     key: 'render',
     value: function render() {
+      var _this3 = this;
+
       return _react2.default.createElement(
         'div',
         null,
@@ -19095,20 +19099,36 @@ var AddPallet = function (_React$Component) {
             id: 'pallet-quantity',
             placeholder: '0',
             value: this.state.palletQty,
-            onChange: this.qtyChange
+            onChange: function onChange(e) {
+              _this3.inputChange(e, 'palletQty');
+            }
           })
         ),
         _react2.default.createElement(
           'label',
           { htmlFor: 'pallet-name' },
           'Pallet Name:',
-          _react2.default.createElement('input', { id: 'pallet-name', value: this.state.palletName, onChange: this.nameChange })
+          _react2.default.createElement('input', { id: 'pallet-name', value: this.state.palletName, onChange: function onChange(e) {
+              _this3.inputChange(e, 'palletName');
+            } })
         ),
         _react2.default.createElement(
           'label',
           { htmlFor: 'pallet-part' },
           'Part Name:',
-          _react2.default.createElement('input', { id: 'pallet-part', value: this.state.partId, onChange: this.partChange })
+          _react2.default.createElement(
+            'select',
+            { id: 'pallet-part', value: this.state.partId, onChange: function onChange(e) {
+                _this3.inputChange(e, 'partId');
+              } },
+            this.state.parts.map(function (part) {
+              return _react2.default.createElement(
+                'option',
+                { value: part.partid },
+                part.partname
+              );
+            })
+          )
         ),
         _react2.default.createElement(
           'button',

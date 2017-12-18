@@ -7,29 +7,30 @@ class AddPallet extends React.Component {
     this.state = {
       palletQty: '',
       palletName: '',
-      partId: '',
+      partId: 1,
+      parts: [],
     };
-    this.qtyChange = this.qtyChange.bind(this);
-    this.nameChange = this.nameChange.bind(this);
-    this.partChange = this.partChange.bind(this);
+    this.inputChange = this.inputChange.bind(this);
     this.createPallet = this.createPallet.bind(this);
+    this.getParts = this.getParts.bind(this);
   }
 
-  qtyChange(event) {
-    this.setState({
-      palletQty: event.target.value,
-    });
+  componentDidMount() {
+    this.getParts()
+      .then((data) => {
+        this.setState({
+          parts: data.data,
+        });
+      });
   }
 
-  nameChange(event) {
-    this.setState({
-      palletName: event.target.value,
-    });
+  getParts() {
+    return axios.get('/parts');
   }
 
-  partChange(event) {
+  inputChange(event, field) {
     this.setState({
-      partId: event.target.value,
+      [field]: event.target.value,
     });
   }
 
@@ -37,9 +38,10 @@ class AddPallet extends React.Component {
     axios.post('/pallet', {
       palletname: this.state.palletName,
       palletqty: this.state.palletQty,
-      partid: this.state.partId,
+      palletpart: this.state.partId,
     });
   }
+
 
   render() {
     return (
@@ -50,16 +52,22 @@ class AddPallet extends React.Component {
             id="pallet-quantity"
             placeholder="0"
             value={this.state.palletQty}
-            onChange={this.qtyChange}
+            onChange={(e) => { this.inputChange(e, 'palletQty'); }}
           />
         </label>
         <label htmlFor="pallet-name">
           Pallet Name:
-          <input id="pallet-name" value={this.state.palletName} onChange={this.nameChange} />
+          <input id="pallet-name" value={this.state.palletName} onChange={(e) => { this.inputChange(e, 'palletName'); }} />
         </label>
         <label htmlFor="pallet-part">
           Part Name:
-          <input id="pallet-part" value={this.state.partId} onChange={this.partChange} />
+          <select id="pallet-part" value={this.state.partId} onChange={(e) => { this.inputChange(e, 'partId'); }}>
+            {
+              this.state.parts.map(part => (
+                <option value={part.partid}>{part.partname}</option>
+              ))
+            }
+          </select>
         </label>
         <button onClick={this.createPallet}>Create Pallet</button>
       </div>
