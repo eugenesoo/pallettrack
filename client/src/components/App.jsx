@@ -10,6 +10,8 @@ class App extends React.Component {
       palletInfo: [],
       processInfo: [],
     };
+    this.updatePallet = this.updatePallet.bind(this);
+    this.updateProcesses = this.updateProcesses.bind(this);
   }
 
   componentDidMount() {
@@ -28,10 +30,31 @@ class App extends React.Component {
       });
   }
 
+  updateProcesses() {
+    axios.get('/pallets')
+      .then((data) => {
+        this.setState({
+          palletInfo: data.data,
+        });
+      });
+  }
+
+  updatePallet(e, palletid, orderid) {
+    axios.patch('/pallet', {
+      palletid,
+      orderid,
+    }).then(() =>
+      axios.get('/pallets')).then((data) => {
+      this.setState({
+        palletInfo: data.data,
+      });
+    });
+  }
+
   render() {
     return (
       <div className="div">
-        <AddPallet />
+        <AddPallet updateProcesses={this.updateProcesses} />
         <div className="processes">
           {
             this.state.processInfo.map(process => (
@@ -41,6 +64,7 @@ class App extends React.Component {
                 palletData={
                   this.state.palletInfo.filter(pallet => pallet.processid === process.processid)
                 }
+                updatePallet={this.updatePallet}
               />
             ))
           }

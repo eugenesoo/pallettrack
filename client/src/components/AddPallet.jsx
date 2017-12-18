@@ -39,7 +39,7 @@ class AddPallet extends React.Component {
       palletname: this.state.palletName,
       palletqty: this.state.palletQty,
       palletpart: this.state.partId,
-    });
+    }).then(() => this.props.updateProcesses());
   }
 
 

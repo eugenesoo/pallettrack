@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Process = props => (
-  <div>
+  <div className="process">
     <h1>{props.processData.processname}</h1>
     {
       props.palletData.map(pallet => (
@@ -9,6 +9,11 @@ const Process = props => (
           <p>{pallet.palletid}</p>
           <p>Qty: {pallet.qty}</p>
           <p>Part: {pallet.partid}</p>
+          <button onClick={(e) => {
+            props.updatePallet(e, pallet.palletid, pallet.orderid + 1);
+          }}
+          >Completed
+          </button>
         </div>
       ))
     }

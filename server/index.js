@@ -18,6 +18,16 @@ app.post('/pallet', (req, res) => {
     });
 });
 
+app.patch('/pallet', (req, res) => {
+  pallet.updatePallet(req.body.palletid, req.body.orderid)
+    .then(() => {
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});
+
 app.get('/pallets', (req, res) => {
   process.getPallets()
     .then((data) => {
