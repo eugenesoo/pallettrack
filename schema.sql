@@ -2,7 +2,7 @@ DROP DATABASE IF EXISTS pallettrack;
 
 CREATE DATABASE pallettrack;
 
-USE pallettrack;
+\connect pallettrack;
 
 CREATE TABLE processes (
   processid SERIAL PRIMARY KEY,
@@ -24,5 +24,5 @@ CREATE TABLE pallets (
   palletid VARCHAR(40) PRIMARY KEY,
   qty INTEGER NOT NULL,
   partid INTEGER REFERENCES parts(partid),
-  orderid REFERENCES processorder(orderid)
+  orderid INTEGER NOT NULL
 );
