@@ -35,7 +35,13 @@ class App extends React.Component {
         <div className="processes">
           {
             this.state.processInfo.map(process => (
-              <Process key={process.processid} processData={process} />
+              <Process
+                key={process.processid}
+                processData={process}
+                palletData={
+                  this.state.palletInfo.filter(pallet => pallet.processid === process.processid)
+                }
+              />
             ))
           }
         </div>
