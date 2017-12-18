@@ -6,6 +6,13 @@ CREATE DATABASE pallettrack;
 
 \connect pallettrack;
 
+CREATE TABLE processes (
+  processid SERIAL PRIMARY KEY,
+  processname VARCHAR(256) NOT NULL
+);
+
+CREATE TABLE parts (
+  partid SERIAL PRIMARY KEY,
   partname VARCHAR(40) NOT NULL
 );
 
@@ -22,8 +29,8 @@ CREATE TABLE pallets (
   orderid INTEGER NOT NULL
 );
 
-INSERT INTO processes (processname) VALUES ('Milling'), ('Chamfering'), ('Tapping'), ('Tumbling (Ceramic)'), ('Brushing'), ('OD Ring Gauge');
+INSERT INTO processes (processname) VALUES ('Milling'), ('Chamfering'), ('Tapping'), ('Tumbling (Ceramic)'), ('Brushing'), ('OD Ring Gauge'), ('Completed');
 
 INSERT INTO parts (partname) VALUES ('Main Shaft 7-0412R5250P');
 
-INSERT INTO processorder (processid, partid, orderid) VALUES (1, 1, 1), (2, 1, 2), (3, 1, 3), (4, 1, 4), (5, 1, 5), (6, 1, 6);
+INSERT INTO processorder (processid, partid, orderid) VALUES (1, 1, 1), (2, 1, 2), (3, 1, 3), (4, 1, 4), (5, 1, 5), (6, 1, 6), (7, 1, 7);
