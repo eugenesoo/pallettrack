@@ -64,7 +64,7 @@ class AddPallet extends React.Component {
           <select id="pallet-part" value={this.state.partId} onChange={(e) => { this.inputChange(e, 'partId'); }}>
             {
               this.state.parts.map(part => (
-                <option value={part.partid}>{part.partname}</option>
+                <option key={part.partid} value={part.partid}>{part.partname}</option>
               ))
             }
           </select>

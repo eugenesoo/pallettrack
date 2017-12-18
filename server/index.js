@@ -35,6 +35,13 @@ app.get('/parts', (req, res) => {
     });
 });
 
+app.get('/processes', (req, res) => {
+  process.getProcesses()
+    .then((data) => {
+      res.send(data.rows);
+    });
+});
+
 app.listen(port, () => {
   console.log('(>^.^)> now listening!');
 });

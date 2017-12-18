@@ -6,6 +6,13 @@ const getPallets = () => {
   return pgClient.query(query);
 };
 
+const getProcesses = () => {
+  const query = 'SELECT * FROM processes';
+
+  return pgClient.query(query);
+};
+
 module.exports = {
   getPallets,
+  getProcesses,
 };
