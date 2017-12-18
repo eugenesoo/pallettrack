@@ -5,7 +5,7 @@ const Process = props => (
     <h1>{props.processData.processname}</h1>
     {
         props.palletData.map(pallet => (
-          <div>
+          <div key={pallet.palletid} className="pallet">
             <p>{pallet.palletid}</p>
             <p>Qty: {pallet.qty}</p>
             <p>Part: {pallet.partid}</p>

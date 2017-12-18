@@ -1,3 +1,7 @@
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
 h1 {
   font-size: 18px;
 }
@@ -6,7 +10,15 @@ h2 {
   font-size: 16px;
 }
 
+p {
+  font-size: 12px;
+}
+
+.processes {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr)
+}
+
 .process {
-  float: left;
   margin: 20px;
 }
