@@ -9,19 +9,19 @@ class App extends React.Component {
     this.state = {
       palletInfo: [],
       processInfo: [],
+      partInfo: [],
     };
     this.updatePallet = this.updatePallet.bind(this);
-    this.updateProcesses = this.updateProcesses.bind(this);
+    this.updateAllPallets = this.updateAllPallets.bind(this);
   }
 
   componentDidMount() {
-    axios.get('/pallets')
-      .then((data) => {
-        this.setState({
-          palletInfo: data.data,
-        });
-      });
+    this.updateAllPallets();
+    this.getProcesses();
+    this.getParts();
+  }
 
+  getProcesses() {
     axios.get('/processes')
       .then((data) => {
         this.setState({
@@ -30,7 +30,16 @@ class App extends React.Component {
       });
   }
 
-  updateProcesses() {
+  getParts() {
+    axios.get('/parts')
+      .then((data) => {
+        this.setState({
+          partInfo: data.data,
+        });
+      });
+  }
+
+  updateAllPallets() {
     axios.get('/pallets')
       .then((data) => {
         this.setState({
@@ -43,18 +52,13 @@ class App extends React.Component {
     axios.patch('/pallet', {
       palletid,
       orderid,
-    }).then(() =>
-      axios.get('/pallets')).then((data) => {
-      this.setState({
-        palletInfo: data.data,
-      });
-    });
+    }).then(() => this.updateAllPallets());
   }
 
   render() {
     return (
       <div className="div">
-        <AddPallet updateProcesses={this.updateProcesses} />
+        <AddPallet partInfo={this.state.partInfo} />
         <div className="processes">
           {
             this.state.processInfo.map(process => (

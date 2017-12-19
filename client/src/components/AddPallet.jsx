@@ -8,24 +8,9 @@ class AddPallet extends React.Component {
       palletQty: '',
       palletName: '',
       partId: 1,
-      parts: [],
     };
     this.inputChange = this.inputChange.bind(this);
     this.createPallet = this.createPallet.bind(this);
-    this.getParts = this.getParts.bind(this);
-  }
-
-  componentDidMount() {
-    this.getParts()
-      .then((data) => {
-        this.setState({
-          parts: data.data,
-        });
-      });
-  }
-
-  getParts() {
-    return axios.get('/parts');
   }
 
   inputChange(event, field) {
@@ -41,7 +26,6 @@ class AddPallet extends React.Component {
       palletpart: this.state.partId,
     }).then(() => this.props.updateProcesses());
   }
-
 
   render() {
     return (
@@ -63,7 +47,7 @@ class AddPallet extends React.Component {
           Part Name:
           <select id="pallet-part" value={this.state.partId} onChange={(e) => { this.inputChange(e, 'partId'); }}>
             {
-              this.state.parts.map(part => (
+              this.props.partInfo.map(part => (
                 <option key={part.partid} value={part.partid}>{part.partname}</option>
               ))
             }
