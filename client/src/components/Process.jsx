@@ -8,7 +8,7 @@ const Process = props => (
           <div key={pallet.palletid} className="pallet">
             <p>{pallet.palletid}</p>
             <p>Qty: {pallet.qty}</p>
-            <p>Part: {pallet.partid}</p>
+            <p>Part: {pallet.partname}</p>
             {
               props.processData.processid !== 7 ?
                 (
