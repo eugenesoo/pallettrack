@@ -11,14 +11,14 @@ const port = 1337;
 app.use(bodyParser.json());
 app.use(express.static(path.resolve(__dirname, '../client/dist')));
 
-app.post('/pallet', (req, res) => {
+app.post('/pallets', (req, res) => {
   pallet.insertPallet(req.body.palletname, req.body.palletpart, req.body.palletqty)
     .then(() => {
       res.sendStatus(200);
     });
 });
 
-app.patch('/pallet', (req, res) => {
+app.patch('/pallets', (req, res) => {
   pallet.updatePallet(req.body.palletid, req.body.orderid)
     .then(() => {
       res.sendStatus(200);
