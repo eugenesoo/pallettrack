@@ -45,6 +45,12 @@ app.get('/parts', (req, res) => {
     });
 });
 
+app.post('/parts', (req, res) => {
+  part.insertPart(req.body.partName)
+    .then(() => res.send(200))
+    .catch(err => res.send(err));
+});
+
 app.get('/processes', (req, res) => {
   process.getProcesses()
     .then((data) => {
