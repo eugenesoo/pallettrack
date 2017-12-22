@@ -10,7 +10,7 @@ const Process = props => (
             <p>Qty: {pallet.qty}</p>
             <p>Part: {pallet.partname}</p>
             {
-              props.processData.processid !== 7 ?
+              props.processData.processid !== 0 ?
                 (
                   <button onClick={(e) => {
                     props.updatePallet(e, pallet.palletid, pallet.orderid + 1);
