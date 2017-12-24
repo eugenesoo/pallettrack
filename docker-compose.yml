@@ -7,3 +7,9 @@ services:
     restart: always
     environment:
       POSTGRES_PASSWORD: nyancat
+  web:
+    image: web:latest
+    ports:
+      - "1337:1337"
+    restart: always
+    working_dir: /home/node/app
