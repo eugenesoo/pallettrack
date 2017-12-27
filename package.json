@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "start": "nodemon server",
-    "client": "webpack --watch --progress"
+    "client": "webpack --watch --progress",
+    "build": "webpack"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

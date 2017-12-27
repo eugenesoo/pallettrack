@@ -4,12 +4,22 @@ services:
     image: postgres:latest
     ports:
       - "5432:5432"
+    networks:
+      - default
     restart: always
     environment:
       POSTGRES_PASSWORD: nyancat
+    volumes:
+      - "./database/data:/var/lib/postgresql/data"
   web:
     image: web:latest
     ports:
       - "1337:1337"
+    networks:
+      - default
     restart: always
     working_dir: /home/node/app
+    command: ["./wait-for-it.sh", "db:5432", "--", "yarn", "start"] 
+networks:
+  default:
+    driver: bridge

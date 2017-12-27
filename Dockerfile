@@ -4,6 +4,8 @@ WORKDIR /home/node/app
 
 COPY . .
 
-RUN yarn install
+RUN yarn install && yarn build
 
-CMD yarn start & yarn client
+EXPOSE 1337
+
+CMD yarn start 
