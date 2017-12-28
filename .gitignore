@@ -59,3 +59,4 @@ typings/
 *.swp
 database/data
 client/dist/js
+*.DS_Store
