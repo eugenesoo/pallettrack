@@ -8,4 +8,4 @@ RUN yarn install && yarn build
 
 EXPOSE 1337
 
-CMD yarn start 
+CMD yarn build && yarn start

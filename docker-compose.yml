@@ -19,7 +19,8 @@ services:
       - default
     restart: always
     working_dir: /home/node/app
-    command: ["./wait-for-it.sh", "db:5432", "--", "yarn", "start"] 
+    volumes:
+      - ".:/home/node/app"
 networks:
   default:
     driver: bridge

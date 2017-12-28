@@ -8,6 +8,6 @@ const pgClient = new pg.Client({
   port: process.env.POSTGRESPORT || '5432',
 });
 
-pgClient.connect();
+pgClient.connect().catch(err => console.log('hello im running'));
 
 module.exports = { pgClient };
