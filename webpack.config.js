@@ -3,11 +3,12 @@ const path = require('path');
 
 const config = {
   entry: {
-    path: path.resolve(__dirname, './client/src/index.jsx'),
+    main: path.resolve(__dirname, './client/src/index.jsx'),
+    scan: path.resolve(__dirname, './client/src/scan.jsx'),
   },
   output: {
-    path: path.resolve(__dirname, './client/dist'),
-    filename: 'bundle.js',
+    path: path.resolve(__dirname, './client/dist/js'),
+    filename: '[name]-bundle.js',
   },
   module: {
     loaders: [{
