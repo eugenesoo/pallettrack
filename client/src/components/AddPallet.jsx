@@ -20,11 +20,11 @@ class AddPallet extends React.Component {
   }
 
   createPallet() {
-    axios.post('/pallet', {
+    axios.post('/pallets', {
       palletname: this.state.palletName,
       palletqty: this.state.palletQty,
       palletpart: this.state.partId,
-    }).then(() => this.props.updateProcesses());
+    }).then(() => this.props.updateAllPallets());
   }
 
   render() {

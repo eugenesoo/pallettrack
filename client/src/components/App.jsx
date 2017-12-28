@@ -49,7 +49,7 @@ class App extends React.Component {
   }
 
   updatePallet(e, palletid, orderid) {
-    axios.patch('/pallet', {
+    axios.patch('/pallets', {
       palletid,
       orderid,
     }).then(() => this.updateAllPallets());
@@ -58,7 +58,10 @@ class App extends React.Component {
   render() {
     return (
       <div className="div">
-        <AddPallet partInfo={this.state.partInfo} />
+        <AddPallet
+          partInfo={this.state.partInfo}
+          updateAllPallets={this.updateAllPallets}
+        />
         <div className="processes">
           {
             this.state.processInfo.map(process => (
