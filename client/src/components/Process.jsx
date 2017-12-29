@@ -12,8 +12,8 @@ const Process = props => (
             {
               props.processData.processid !== 0 ?
                 (
-                  <button onClick={(e) => {
-                    props.updatePallet(e, pallet.palletid, pallet.orderid + 1);
+                  <button onClick={() => {
+                    props.updatePallet(pallet.palletid);
                   }}
                   >Completed
                   </button>

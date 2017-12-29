@@ -48,10 +48,9 @@ class App extends React.Component {
       });
   }
 
-  updatePallet(e, palletid, orderid) {
+  updatePallet(palletid) {
     axios.patch('/pallets', {
       palletid,
-      orderid,
     }).then(() => this.updateAllPallets());
   }
 
