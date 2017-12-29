@@ -1,3 +1,5 @@
+/* eslint-env browser */
+
 import React from 'react';
 
 const Process = props => (
@@ -9,6 +11,7 @@ const Process = props => (
             <p>{pallet.palletid}</p>
             <p>Qty: {pallet.qty}</p>
             <p>Part: {pallet.partname}</p>
+            <button onClick={() => window.open(`/pallet?id=${pallet.palletid}`, '_blank')}>Generate QR Code</button>
             {
               props.processData.processid !== 0 ?
                 (
