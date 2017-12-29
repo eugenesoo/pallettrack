@@ -3,6 +3,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import Instascan from 'instascan';
+
+const scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
+scanner.addListener('scan', (content) => {
+  console.log(content);
+});
+Instascan.Camera.getCameras().then((cameras) => {
+  if (cameras.length > 0) {
+    scanner.start(cameras[0]);
+  } else {
+    console.error('No cameras found.');
+  }
+}).catch((e) => {
+  console.error(e);
+});
 
 class Scan extends React.Component {
   constructor(props) {
