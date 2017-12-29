@@ -8,10 +8,10 @@ const insertPallet = (palletName, palletPart, palletQty) => {
   return pgClient.query(query, params);
 };
 
-const updatePallet = (palletid, orderid) => {
-  const query = 'UPDATE pallets SET orderid = $1 WHERE palletid = $2';
+const updatePallet = (palletid) => {
+  const query = 'UPDATE pallets SET orderid = orderid + 1 WHERE palletid = $1';
 
-  const params = [orderid, palletid];
+  const params = [palletid];
 
   return pgClient.query(query, params);
 };

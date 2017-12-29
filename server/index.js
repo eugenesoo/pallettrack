@@ -20,9 +20,9 @@ app.post('/pallets', (req, res) => {
 });
 
 app.patch('/pallets', (req, res) => {
-  pallet.updatePallet(req.body.palletid, req.body.orderid)
-    .then(() => {
-      res.sendStatus(200);
+  pallet.updatePallet(req.body.palletid)
+    .then((results) => {
+      res.send(results);
     })
     .catch((err) => {
       res.send(err);

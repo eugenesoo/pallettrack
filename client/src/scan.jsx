@@ -37,28 +37,49 @@ class Scan extends React.Component {
       palletid: this.state.palletId,
     }).then((results) => {
       console.log('hello', results);
-      this.setState({
-        isSuccess: true,
-      });
+      if (results.data.rowCount === 0) {
+        console.log('BOO');
+        this.setState({
+          isSuccess: false,
+        });
+      } else {
+        this.setState({
+          isSuccess: true,
+        });
+      }
     });
   }
 
   render() {
+    let statusMsg;
+
+    if (this.state.isSuccess === true) {
+      statusMsg = (
+        <div>
+          Success!
+        </div>
+      );
+    } else if (this.state.isSuccess === false) {
+      statusMsg = (
+        <div>
+          Invalid Part ID
+        </div>
+      );
+    } else {
+      statusMsg = (
+        <div>
+          Please input part ID
+        </div>
+      );
+    }
+
     return (
       <div>
         <label htmlFor="pallet-id">
           <input id="pallet-id" value={this.state.palletId} onChange={this.updateInput} />
           <button onClick={this.updatePallet}>Transfer Part</button>
         </label>
-        {
-          this.state.isSuccess ?
-            (
-              <div>
-                hello world
-              </div>
-            ) :
-            null
-        }
+        { statusMsg }
       </div>
     );
   }
