@@ -21,6 +21,14 @@ services:
     working_dir: /home/node/app
     volumes:
       - ".:/home/node/app"
+  proxy:
+    image: nginx:latest
+    ports:
+      - "8080:8080"
+      - "8443:443"
+    networks:
+      - default
+    restart: always
 networks:
   default:
     driver: bridge
